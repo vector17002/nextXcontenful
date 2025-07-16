@@ -14,7 +14,6 @@ export async function getStaticProps() {
   }
 }
 export default function Home({ vaults } : { vaults: any[] }) {
-  console.log(vaults);
   return (
     <>
      {vaults.map((project, index) => (
