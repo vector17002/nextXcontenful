@@ -1,11 +1,8 @@
-import { createClient } from "contentful";
+import { Project } from "@/components/Project";
+import client from "@/utils/contentful";
+
 
 export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID!,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
-  });
-
   const res = await client.getEntries({
     content_type: "vault",
   });
@@ -20,7 +17,9 @@ export default function Home({ vaults } : { vaults: any[] }) {
   console.log(vaults);
   return (
     <>
-     Hello
+     {vaults.map((project, index) => (
+       <Project project={project} key={index}/>
+     ))}
     </>
   )
 }
